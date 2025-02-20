@@ -1,0 +1,29 @@
+# ReadMe
+
+This is a simple app template.
+
+## Backend
+
+Dependencies :
+
+```
+python3 -m venv venv
+source venv/bin/activate
+python3 -m pip install "fastapi[all]" "uvicorn[standard]" sqlalchemy
+```
+
+Run the app :
+
+```
+python3 -m uvicorn backend.main:app --reload
+```
+
+## Frontend
+
+If necessary, install node : https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+
+```
+cd frontend
+npm install
+npm run dev
+```
