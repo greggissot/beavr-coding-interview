@@ -82,3 +82,23 @@ cd frontend
 npm install
 npm run dev
 ```
+
+To run the frontend (streamlit), you should install the package and run
+
+```
+python3 -m streamlit run app.py
+
+```
+
+
+### Choice of Streamlit
+
+The choice of streamlit is based on the fact that it gives access to component that does exactly what we want (for the uploading files aspect) and is easy to manipulate with the fastAPI backend. Moreover, I already used it to summarize document in my previous projects at Theodo.
+
+### Choice of OpenAI 
+
+For the key element extraction and summary, a LLM calling looks an easy way to do this. Due to a lack of time, the key element extraction is not fully functional (as I was unware of the possibility to constraint the output of a LLM with the OpenAI package itself).
+
+### Dependencies 
+
+Other packages are required : streamlit, requests, pdfplumber, openai.
