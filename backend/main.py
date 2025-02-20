@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .src.model import Document
 from .src.schema import DocumentBase
 from .src.database import SessionLocal, engine, Base
+from .src.llm_completion import completion, extract_key_elements
 from sqlalchemy.orm import Session
 
 Base.metadata.create_all(bind=engine)
@@ -36,7 +37,7 @@ def read_root():
 
 @app.post("/add_document")
 def add_document(document: DocumentBase, db: Session = Depends(get_db)):
-    db_doc = Document(name=document.name)
+    db_doc = Document(title=document.title, content=document.content, summary=completion(document.content), key_elements=extract_key_elements(document.content))
     db.add(db_doc)
     db.commit()
     db.refresh(db_doc)
@@ -46,5 +47,7 @@ def add_document(document: DocumentBase, db: Session = Depends(get_db)):
 def get_documents(db: Session = Depends(get_db)):
     docs = db.query(Document).all()
     return docs
+
+
 
 
